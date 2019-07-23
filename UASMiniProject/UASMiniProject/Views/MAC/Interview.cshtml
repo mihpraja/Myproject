@@ -1,0 +1,84 @@
+﻿@model IEnumerable<UASMiniProject.Models.ApplicationForm>
+
+@{
+    ViewBag.Title = "Interview";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<br /><br /><br />
+<div class="col-lg-offset-1">
+    @Html.ActionLink("Status Of Applicant", "DisplayInterview", "MAC", new { @class = "btn btn-warning  " })
+</div>
+<div class="col-lg-offset-11">
+    @Html.ActionLink("MAC Menu", "Index", "MAC", new { @class = "btn btn-warning  " })
+</div>
+<br />
+<table class="table table-hover">
+    <tr class="success">
+        <th>
+            @Html.DisplayNameFor(model => model.Full_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Of_Birth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Highest_Qualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marks_Obtained)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Goals)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Scheduled_Program_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+
+        <th>
+            @Html.Label("Action")
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr class="info">
+            <td>
+                @Html.DisplayFor(modelItem => item.Full_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Of_Birth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Highest_Qualification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marks_Obtained)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Goals)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Scheduled_Program_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+
+            <td>
+                <button type="submit" name="btnConfirmed" value="Confirmed" onclick="location.href='@Url.Action("ConfirmedOrRejected","MAC", new { id=item.Application_Id })'" class="btn btn-sm btn-success">Confirmed</button>
+                <button type="submit" name="btnReject" value="Reject" onclick="location.href='@Url.Action("Reject","MAC", new { id=item.Application_Id })'" class="btn btn-sm btn-danger">Reject</button>
+
+            </td>
+        </tr>
+    }
+</table>
+
+

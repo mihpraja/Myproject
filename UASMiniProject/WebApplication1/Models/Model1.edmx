@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UniversityAdmissionSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplicationForm">
+          <Key>
+            <PropertyRef Name="Application_Id" />
+          </Key>
+          <Property Name="Application_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Full_Name" Type="varchar" MaxLength="20" />
+          <Property Name="Date_Of_Birth" Type="date" />
+          <Property Name="Highest_Qualification" Type="varchar" MaxLength="10" />
+          <Property Name="Marks_Obtained" Type="int" />
+          <Property Name="Goals" Type="varchar" MaxLength="20" />
+          <Property Name="Email_Id" Type="varchar" MaxLength="20" />
+          <Property Name="Scheduled_Program_Id" Type="varchar" MaxLength="5" />
+          <Property Name="Status" Type="varchar" MaxLength="10" />
+          <Property Name="Date_Of_Interview" Type="date" />
+        </EntityType>
+        <EntityType Name="Offer_Scheduled">
+          <Key>
+            <PropertyRef Name="DummyID_PO" />
+          </Key>
+          <Property Name="DummyID_PO" Type="int" Nullable="false" />
+          <Property Name="DummyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Participants">
+          <Key>
+            <PropertyRef Name="ParticipantID" />
+          </Key>
+          <Property Name="ParticipantID" Type="int" Nullable="false" />
+          <Property Name="Roll_no" Type="varchar" MaxLength="5" />
+          <Property Name="email_id" Type="varchar" MaxLength="20" />
+          <Property Name="Application_id" Type="int" />
+          <Property Name="Scheduled_program_id" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="ProgramsOffered">
+          <Key>
+            <PropertyRef Name="DummyID_PO" />
+          </Key>
+          <Property Name="Program_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Applicant_Eligibility" Type="varchar" MaxLength="40" />
+          <Property Name="Duration_in_years" Type="int" />
+          <Property Name="Degree_Certificate_Offered" Type="varchar" MaxLength="50" />
+          <Property Name="DummyID_PO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProgramsScheduled">
+          <Key>
+            <PropertyRef Name="DummyID" />
+          </Key>
+          <Property Name="Scheduled_Program_Id" Type="varchar" MaxLength="50" />
+          <Property Name="Program_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="Start_Date" Type="date" />
+          <Property Name="End_Date" Type="date" />
+          <Property Name="Sessions_Per_Week" Type="int" />
+          <Property Name="DummyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="DummyID_User" />
+          </Key>
+          <Property Name="Login_id" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+          <Property Name="DummyID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Offer_Scheduled_ProgramsOffered">
+          <End Role="ProgramsOffered" Type="Self.ProgramsOffered" Multiplicity="1" />
+          <End Role="Offer_Scheduled" Type="Self.Offer_Scheduled" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgramsOffered">
+              <PropertyRef Name="DummyID_PO" />
+            </Principal>
+            <Dependent Role="Offer_Scheduled">
+              <PropertyRef Name="DummyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offer_Scheduled_ProgramsScheduled">
+          <End Role="ProgramsScheduled" Type="Self.ProgramsScheduled" Multiplicity="1" />
+          <End Role="Offer_Scheduled" Type="Self.Offer_Scheduled" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ProgramsScheduled">
+              <PropertyRef Name="DummyID" />
+            </Principal>
+            <Dependent Role="Offer_Scheduled">
+              <PropertyRef Name="DummyID_PO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Participants_ApplicationForm">
+          <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="0..1" />
+          <End Role="Participants" Type="Self.Participants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationForm">
+              <PropertyRef Name="Application_Id" />
+            </Principal>
+            <Dependent Role="Participants">
+              <PropertyRef Name="Application_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UniversityAdmissionSystemModelStoreContainer">
+          <EntitySet Name="ApplicationForm" EntityType="Self.ApplicationForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offer_Scheduled" EntityType="Self.Offer_Scheduled" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramsOffered" EntityType="Self.ProgramsOffered" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramsScheduled" EntityType="Self.ProgramsScheduled" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Offer_Scheduled_ProgramsOffered" Association="Self.FK_Offer_Scheduled_ProgramsOffered">
+            <End Role="ProgramsOffered" EntitySet="ProgramsOffered" />
+            <End Role="Offer_Scheduled" EntitySet="Offer_Scheduled" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offer_Scheduled_ProgramsScheduled" Association="Self.FK_Offer_Scheduled_ProgramsScheduled">
+            <End Role="ProgramsScheduled" EntitySet="ProgramsScheduled" />
+            <End Role="Offer_Scheduled" EntitySet="Offer_Scheduled" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Participants_ApplicationForm" Association="Self.FK_Participants_ApplicationForm">
+            <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+            <End Role="Participants" EntitySet="Participants" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UniversityAdmissionSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApplicationForm">
+          <Key>
+            <PropertyRef Name="Application_Id" />
+          </Key>
+          <Property Name="Application_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Full_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Of_Birth" Type="DateTime" Precision="0" />
+          <Property Name="Highest_Qualification" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Marks_Obtained" Type="Int32" />
+          <Property Name="Goals" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Scheduled_Program_Id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Of_Interview" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Participants" Relationship="Self.FK_Participants_ApplicationForm" FromRole="ApplicationForm" ToRole="Participants" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="ParticipantID" />
+          </Key>
+          <Property Name="ParticipantID" Type="Int32" Nullable="false" />
+          <Property Name="Roll_no" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="email_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Application_id" Type="Int32" />
+          <Property Name="Scheduled_program_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationForm" Relationship="Self.FK_Participants_ApplicationForm" FromRole="Participants" ToRole="ApplicationForm" />
+        </EntityType>
+        <EntityType Name="ProgramsOffered">
+          <Key>
+            <PropertyRef Name="DummyID_PO" />
+          </Key>
+          <Property Name="Program_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Applicant_Eligibility" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Duration_in_years" Type="Int32" />
+          <Property Name="Degree_Certificate_Offered" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DummyID_PO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ProgramsScheduleds" Relationship="Self.Offer_Scheduled" FromRole="ProgramsOffered" ToRole="ProgramsScheduled" />
+        </EntityType>
+        <EntityType Name="ProgramsScheduled">
+          <Key>
+            <PropertyRef Name="DummyID" />
+          </Key>
+          <Property Name="Scheduled_Program_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Program_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Start_Date" Type="DateTime" Precision="0" />
+          <Property Name="End_Date" Type="DateTime" Precision="0" />
+          <Property Name="Sessions_Per_Week" Type="Int32" />
+          <Property Name="DummyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ProgramsOffered" Relationship="Self.Offer_Scheduled" FromRole="ProgramsScheduled" ToRole="ProgramsOffered" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="DummyID_User" />
+          </Key>
+          <Property Name="Login_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DummyID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_Participants_ApplicationForm">
+          <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="0..1" />
+          <End Role="Participants" Type="Self.Participant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationForm">
+              <PropertyRef Name="Application_Id" />
+            </Principal>
+            <Dependent Role="Participants">
+              <PropertyRef Name="Application_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Offer_Scheduled">
+          <End Role="ProgramsOffered" Type="Self.ProgramsOffered" Multiplicity="0..1" />
+          <End Role="ProgramsScheduled" Type="Self.ProgramsScheduled" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="UniversityAdmissionSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicationForms" EntityType="Self.ApplicationForm" />
+          <EntitySet Name="Participants" EntityType="Self.Participant" />
+          <EntitySet Name="ProgramsOffereds" EntityType="Self.ProgramsOffered" />
+          <EntitySet Name="ProgramsScheduleds" EntityType="Self.ProgramsScheduled" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Participants_ApplicationForm" Association="Self.FK_Participants_ApplicationForm">
+            <End Role="ApplicationForm" EntitySet="ApplicationForms" />
+            <End Role="Participants" EntitySet="Participants" />
+          </AssociationSet>
+          <AssociationSet Name="Offer_Scheduled" Association="Self.Offer_Scheduled">
+            <End Role="ProgramsOffered" EntitySet="ProgramsOffereds" />
+            <End Role="ProgramsScheduled" EntitySet="ProgramsScheduleds" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UniversityAdmissionSystemModelStoreContainer" CdmEntityContainer="UniversityAdmissionSystemEntities">
+          <EntitySetMapping Name="ApplicationForms">
+            <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.ApplicationForm">
+              <MappingFragment StoreEntitySet="ApplicationForm">
+                <ScalarProperty Name="Application_Id" ColumnName="Application_Id" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+                <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
+                <ScalarProperty Name="Highest_Qualification" ColumnName="Highest_Qualification" />
+                <ScalarProperty Name="Marks_Obtained" ColumnName="Marks_Obtained" />
+                <ScalarProperty Name="Goals" ColumnName="Goals" />
+                <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
+                <ScalarProperty Name="Scheduled_Program_Id" ColumnName="Scheduled_Program_Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date_Of_Interview" ColumnName="Date_Of_Interview" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Participants">
+            <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.Participant">
+              <MappingFragment StoreEntitySet="Participants">
+                <ScalarProperty Name="ParticipantID" ColumnName="ParticipantID" />
+                <ScalarProperty Name="Roll_no" ColumnName="Roll_no" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="Application_id" ColumnName="Application_id" />
+                <ScalarProperty Name="Scheduled_program_id" ColumnName="Scheduled_program_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramsOffereds">
+            <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.ProgramsOffered">
+              <MappingFragment StoreEntitySet="ProgramsOffered">
+                <ScalarProperty Name="Program_Name" ColumnName="Program_Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Applicant_Eligibility" ColumnName="Applicant_Eligibility" />
+                <ScalarProperty Name="Duration_in_years" ColumnName="Duration_in_years" />
+                <ScalarProperty Name="Degree_Certificate_Offered" ColumnName="Degree_Certificate_Offered" />
+                <ScalarProperty Name="DummyID_PO" ColumnName="DummyID_PO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramsScheduleds">
+            <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.ProgramsScheduled">
+              <MappingFragment StoreEntitySet="ProgramsScheduled">
+                <ScalarProperty Name="Scheduled_Program_Id" ColumnName="Scheduled_Program_Id" />
+                <ScalarProperty Name="Program_Name" ColumnName="Program_Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Sessions_Per_Week" ColumnName="Sessions_Per_Week" />
+                <ScalarProperty Name="DummyID" ColumnName="DummyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Login_id" ColumnName="Login_id" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="DummyID_User" ColumnName="DummyID_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Offer_Scheduled" TypeName="UniversityAdmissionSystemModel.Offer_Scheduled" StoreEntitySet="Offer_Scheduled">
+            <EndProperty Name="ProgramsOffered">
+              <ScalarProperty Name="DummyID_PO" ColumnName="DummyID" />
+            </EndProperty>
+            <EndProperty Name="ProgramsScheduled">
+              <ScalarProperty Name="DummyID" ColumnName="DummyID_PO" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

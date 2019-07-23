@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<br /><br />
+<h2 style="text-align:center;color:indianred">REPORTS</h2>
+<br /><br />
+<div class="col-lg">
+    @Html.ActionLink("Admin Menu ", "Index", "Admin", new { @class = "btn btn-danger  " })
+</div>
+<br />
+@using (Html.BeginForm())
+{
+    <div class="bg-info" style="height:500px;">
+        <table>
+
+            <tr>
+                <td>
+                    <a href="/Admin/ShowData" class="btn-block">  List of applicants confirmed/ accepted(waiting for interview)/rejected</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="/Participant/TimeTable">  List of programs scheduled to commence in the given time period</a></td>
+            </tr>
+        </table>
+    </div>
+}
+

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UniversityAdmissionSystemModelStoreContainer" CdmEntityContainer="UAScontext">
+    <EntitySetMapping Name="ApplicationForms">
+      <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.ApplicationForm">
+        <MappingFragment StoreEntitySet="ApplicationForm">
+          <ScalarProperty Name="Application_Id" ColumnName="Application_Id" />
+          <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
+          <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
+          <ScalarProperty Name="Highest_Qualification" ColumnName="Highest_Qualification" />
+          <ScalarProperty Name="Marks_Obtained" ColumnName="Marks_Obtained" />
+          <ScalarProperty Name="Goals" ColumnName="Goals" />
+          <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
+          <ScalarProperty Name="Scheduled_Program_Id" ColumnName="Scheduled_Program_Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Date_Of_Interview" ColumnName="Date_Of_Interview" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Participants">
+      <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.Participant">
+        <MappingFragment StoreEntitySet="Participants">
+          <ScalarProperty Name="ParticipantID" ColumnName="ParticipantID" />
+          <ScalarProperty Name="Roll_no" ColumnName="Roll_no" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="Application_id" ColumnName="Application_id" />
+          <ScalarProperty Name="Scheduled_program_id" ColumnName="Scheduled_program_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramsOffereds">
+      <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.ProgramsOffered">
+        <MappingFragment StoreEntitySet="ProgramsOffered">
+          <ScalarProperty Name="Duration_in_years" ColumnName="Duration_in_years" />
+          <ScalarProperty Name="Program_Name" ColumnName="Program_Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Applicant_Eligibility" ColumnName="Applicant_Eligibility" />
+          <ScalarProperty Name="Degree_Certificate_Offered" ColumnName="Degree_Certificate_Offered" />
+          <ScalarProperty Name="DummyID_PO" ColumnName="DummyID_PO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramsScheduleds">
+      <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.ProgramsScheduled">
+        <MappingFragment StoreEntitySet="ProgramsScheduled">
+          <ScalarProperty Name="Scheduled_Program_Id" ColumnName="Scheduled_Program_Id" />
+          <ScalarProperty Name="Program_Name" ColumnName="Program_Name" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Sessions_Per_Week" ColumnName="Sessions_Per_Week" />
+          <ScalarProperty Name="DummyID" ColumnName="DummyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Login_id" ColumnName="Login_id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="DummyID_User" ColumnName="DummyID_User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Offer_Scheduled">
+      <EntityTypeMapping TypeName="UniversityAdmissionSystemModel.Offer_Scheduled">
+        <MappingFragment StoreEntitySet="Offer_Scheduled">
+          <ScalarProperty Name="DummyID" ColumnName="DummyID" />
+          <ScalarProperty Name="DummyID_PO" ColumnName="DummyID_PO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

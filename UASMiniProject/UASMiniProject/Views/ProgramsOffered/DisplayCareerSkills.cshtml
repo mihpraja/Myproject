@@ -1,0 +1,27 @@
+﻿@model UASMiniProject.Models.ProgramsOffered
+
+@{
+    ViewBag.Title = "DisplayCareerSkills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br /><br />
+
+<div>
+
+    <img src="~/img/skills.jfif"  />
+</div>
+<br /><br />
+<h2 class="text-center text-danger">WELCOME TO CAREER SKILLS ACADEMY</h2>
+<br />
+<p>
+    Career Skills Training (CST) by Stanford university provides a comprehensive portfolio of training solutions to help your business achieve and sustain a competitive edge. It is very important to develop the man power of any organization to increase productivity
+    and performance. Companies must educate industry entrants with the corporate skills to maneuver their career in the right direction. Mid-career executives also need to keep abreast with the changing industry scenario. There should be meticulous plan to
+    make the mid-career executive move ahead on his way up to the helm.
+</p>
+@{
+    <div class="col-lg-11 text-center">
+        <input type="button" name="button1" value="Apply Now" class="btn btn-primary" onclick="location.href='@Url.Action("Register", "Applicant")'" />
+
+    </div>
+}

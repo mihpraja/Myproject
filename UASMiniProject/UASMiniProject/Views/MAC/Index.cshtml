@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<br /><br />
+<h2 style="text-align:center;color:crimson">MEMBER OF ADMISSION COMMITTEE</h2>
+<br /><br />
+@using (Html.BeginForm())
+{
+    <div class="bg-info" style="height:500px;">
+
+        <div>
+
+            <a href="/MAC/ViewApp"><img src="~/img/ViewApp.png" class="img-rounded " style="margin-left:70px;width:200px;height:200px" /></a>
+
+            <a href="/MAC/StatusChange"> <img src="~/img/status.jfif" class="img-rounded " style="height:200px;width:200px;margin-bottom:250px;margin-left:350px;margin-top:20px" /> </a>
+
+            <a href="/MAC/Interview"><img src="~/img/interview.jfif" class="img-rounded" style="height:200px;width:200px;margin-left:350px" /> </a>
+        </div>
+    </div>
+}
+

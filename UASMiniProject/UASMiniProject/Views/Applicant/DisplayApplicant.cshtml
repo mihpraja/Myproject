@@ -1,0 +1,21 @@
+﻿@model UASMiniProject.Models.ApplicationForm
+
+@{
+    ViewBag.Title = "DisplayApplicant";
+    Layout = "~/Views/Shared/_LayoutApplicant.cshtml";
+}
+<br />
+<br />
+<br />
+<div>
+    @using (Html.BeginForm())
+    {
+
+        <div class="col-lg-offset-11">
+            @Html.ActionLink("Know Status", "StatusFinal", "Applicant", new { @class = "btn btn-success " })
+        </div>
+    }
+
+    <img src="~/img/DisplayApplicant.jfif" height="600" width="1500" />
+</div>
+

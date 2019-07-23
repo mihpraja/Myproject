@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "HotelManagement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>HOTEL MANAGEMENT COURSE</h2>
+<img src="~/img/Hotel Management.jpg"  />
+<h3>Introduction</h3>
+<p>
+    Established in 2002, Stanford Universities Hotel Management has been the choice of thousands of successful hospitality professionals, who have benefited from our cutting edge curriculum, extensive industry connections, top-notch placements all wrapped up in a exciting, life changing experience.
+    Our well-trained, well-groomed and thoroughly professionals graduates have exceeded industry expectations year on year, making SUHM the preferred recruitment partner to USA’s top Hotel chains.
+</p>
+<h3>Bachelor of Science in Hospitality Studies</h3>
+<ul>
+    <li>3-year degree course</li>
+    <li>Affiliated to University of California</li>
+    <li>Eligibility – Minimum 45% in Junior School</li>
+</ul>
+<h3>
+    Bachelor of Arts in International Hospitality & Tourism Management
+</h3>
+<ul>
+    <li>3-year degree course</li>
+    <li> Dual Certification from Queen Margaret University, USA and an UGC recognized American University</li>
+    <li> Eligibility – Minimum 45% in Junior School</li>
+</ul>
+@{
+    <div class="col-lg-11 text-center">
+        <input type="button" name="button1" value="Apply Now" class="btn btn-primary" onclick="location.href='@Url.Action("Register", "Applicant")'" />
+    </div>
+}

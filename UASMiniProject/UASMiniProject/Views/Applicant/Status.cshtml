@@ -1,0 +1,50 @@
+﻿@model UASMiniProject.Models.ApplicationForm
+
+@{
+    ViewBag.Title = "Status";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br /><br /><br /><br />
+<link href="~/css/Status.css" rel="stylesheet" />
+<div class="row" style="margin-left: auto;
+    margin-right: auto;">
+    <!-- Grid column -->
+    <div class="col-md-6 mb-4">
+        <div class="card near-moon-gradient form-white">
+            <div class="card-body">
+                <!-- Form subscription -->
+                <form>
+                    <h3 class="text-center indigo-text font-bold py-4"><strong>To Know Your Application Status</strong></h3>
+                    <div class="md-form">
+                        <i class="fa fa-user prefix white-text"></i>
+                        <input type="text" id="form35" class="form-control">
+                        <label for="form35"></label>
+                    </div>
+                    @*@Html.TextBox("search") <input type="submit"
+                        name="submit"
+                        value="Search" />*@
+                    @using (Html.BeginForm())
+                    {
+                        <div class="text-center py-4">
+                            <button class="btn btn-indigo" id="search">Check<i class="fa fa-paper-plane-o ml-1"></i></button>
+                        </div>
+                    }
+                    @Html.DisplayNameFor(m => m.Status)
+                    @foreach (var item in Model)
+                    {
+                        @Html.DisplayFor(m => item.Status);
+                    }
+
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="my-4">
+
+
+

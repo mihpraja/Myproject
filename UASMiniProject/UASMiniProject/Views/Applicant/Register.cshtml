@@ -1,0 +1,132 @@
+﻿@model UASMiniProject.Models.ApplicationForm
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">*@
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+@*<script type="text/javascript">*@
+//function Success() {
+//    if (register == null) {
+//        alert("please enter data");
+//    }
+//    else {
+//        alert("Sucessfully Registered");
+//    }
+//}
+@*</script>*@
+<!------ Include the above in your HEAD tag ---------->
+@using (Html.BeginForm())
+{
+
+    
+    <link href="~/css/Register.css" rel="stylesheet" />
+    <div class="container register">
+        <div class="row">
+          
+            <div class="col-md-3 register-left">
+                <img src="~/img/Online-Student-Registration.png" height="50" alt="" />
+                <h3>Welcome</h3>
+                <p>You are 30 seconds away from registration !</p>
+            </div>
+            <div class="col-md-9 register-right">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="nav-item">
+                        @*@Html.ActionLink("Admin", "RegisterForAdmin", "Users", new { @class = "nav-link" })*@
+                        <a class="nav-link" href="@Url.Action("RegisterForAdmin","User")">Admin</a>
+                    </li>
+                </ul>
+                <div>
+                    <div>
+                        <h3 class="register-heading">Apply as a Applicant</h3>
+                        <div class="row register-form">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Full_Name, new { htmlAttributes = new { @class = "form-control error", @placeholder = "FullName*" } })
+                                        @Html.ValidationMessageFor(model => model.Full_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Date_Of_Birth, new { htmlAttributes = new { @class = "form-control error", @placeholder = "Date Of Birth*" } })
+                                        @Html.ValidationMessageFor(model => model.Date_Of_Birth, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Highest_Qualification, new { htmlAttributes = new { @class = "form-control error", @placeholder = " Your Highest Qualification*" } })
+                                        @Html.ValidationMessageFor(model => model.Highest_Qualification, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Marks_Obtained, new { htmlAttributes = new { @class = "form-control error", @placeholder = "Marks Obtained*" } })
+                                        @Html.ValidationMessageFor(model => model.Marks_Obtained, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Goals, new { htmlAttributes = new { @class = "form-control error", @placeholder = " Your Goals*" } })
+                                        @Html.ValidationMessageFor(model => model.Goals, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Email_Id, new { htmlAttributes = new { @class = "form-control error", @placeholder = "Your Email*" } })
+                                        @Html.ValidationMessageFor(model => model.Email_Id, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.Scheduled_Program_Id, new List<SelectListItem>
+                                            {
+                                        new SelectListItem() {
+                                            Text = "Career Skills", Value = "CareerSkills"},
+                                        new SelectListItem() {
+                                            Text = "Online Program", Value = "OnlineProgram"},
+                                        new SelectListItem() {
+                                            Text = "Hotel Management", Value = "HotelManagement"},
+                                        new SelectListItem() {
+                                            Text = "Engineering", Value = "Engineering"  },
+                                        new SelectListItem() {
+                                            Text = "Health Science", Value = "HealthScience"}
+                                            },
+                                        "Please select your Program Schedule")
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @Html.HiddenFor(model => model.Status, new { Value = "Applied" })
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <input type="submit" class="btnRegister" value="Register" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

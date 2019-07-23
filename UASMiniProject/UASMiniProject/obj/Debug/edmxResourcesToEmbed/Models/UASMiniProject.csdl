@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UASMiniProject" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ApplicationForm">
+    <Key>
+      <PropertyRef Name="Application_Id" />
+    </Key>
+    <Property Name="Application_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Full_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Of_Birth" Type="DateTime" Precision="0" />
+    <Property Name="Highest_Qualification" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Marks_Obtained" Type="Int32" />
+    <Property Name="Goals" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Scheduled_Program_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Of_Interview" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Participants" Relationship="Self.FK_Participants_ApplicationForm" FromRole="ApplicationForm" ToRole="Participants" />
+  </EntityType>
+  <EntityType Name="Offer_Scheduled">
+    <Key>
+      <PropertyRef Name="DummyID_PO" />
+    </Key>
+    <Property Name="DummyID_PO" Type="Int32" Nullable="false" />
+    <Property Name="DummyID" Type="Int32" />
+    <NavigationProperty Name="ProgramsScheduled" Relationship="UASMiniProject.FK_Offer_Scheduled_ProgramsScheduled" FromRole="Offer_Scheduled" ToRole="ProgramsScheduled" />
+    <NavigationProperty Name="ProgramsOffered" Relationship="UASMiniProject.FK_Offer_Scheduled_ProgramsOffered" FromRole="Offer_Scheduled" ToRole="ProgramsOffered" />
+  </EntityType>
+  <EntityType Name="Participant">
+    <Key>
+      <PropertyRef Name="ParticipantID" />
+    </Key>
+    <Property Name="ParticipantID" Type="Int32" Nullable="false" />
+    <Property Name="Roll_no" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="email_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Application_id" Type="Int32" />
+    <Property Name="Scheduled_program_id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ApplicationForm" Relationship="Self.FK_Participants_ApplicationForm" FromRole="Participants" ToRole="ApplicationForm" />
+  </EntityType>
+  <EntityType Name="ProgramsOffered">
+    <Key>
+      <PropertyRef Name="DummyID_PO" />
+    </Key>
+    <Property Name="Program_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Applicant_Eligibility" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Duration_in_years" Type="Int32" />
+    <Property Name="Degree_Certificate_Offered" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DummyID_PO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Offer_Scheduled" Relationship="UASMiniProject.FK_Offer_Scheduled_ProgramsOffered" FromRole="ProgramsOffered" ToRole="Offer_Scheduled" />
+  </EntityType>
+  <EntityType Name="ProgramsScheduled">
+    <Key>
+      <PropertyRef Name="DummyID" />
+    </Key>
+    <Property Name="Scheduled_Program_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Program_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Start_Date" Type="DateTime" Precision="0" />
+    <Property Name="End_Date" Type="DateTime" Precision="0" />
+    <Property Name="Sessions_Per_Week" Type="Int32" />
+    <Property Name="DummyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Offer_Scheduled" Relationship="UASMiniProject.FK_Offer_Scheduled_ProgramsScheduled" FromRole="ProgramsScheduled" ToRole="Offer_Scheduled" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="DummyID_User" />
+    </Key>
+    <Property Name="Login_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DummyID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <Association Name="FK_Participants_ApplicationForm">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="0..1" />
+    <End Role="Participants" Type="Self.Participant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="Application_Id" />
+      </Principal>
+      <Dependent Role="Participants">
+        <PropertyRef Name="Application_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UAScontextss" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ApplicationForms" EntityType="Self.ApplicationForm" />
+    <EntitySet Name="Offer_Scheduled" EntityType="Self.Offer_Scheduled" />
+    <EntitySet Name="Participants" EntityType="Self.Participant" />
+    <EntitySet Name="ProgramsOffereds" EntityType="Self.ProgramsOffered" />
+    <EntitySet Name="ProgramsScheduleds" EntityType="Self.ProgramsScheduled" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Participants_ApplicationForm" Association="Self.FK_Participants_ApplicationForm">
+      <End Role="ApplicationForm" EntitySet="ApplicationForms" />
+      <End Role="Participants" EntitySet="Participants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Offer_Scheduled_ProgramsScheduled" Association="UASMiniProject.FK_Offer_Scheduled_ProgramsScheduled">
+      <End Role="ProgramsScheduled" EntitySet="ProgramsScheduleds" />
+      <End Role="Offer_Scheduled" EntitySet="Offer_Scheduled" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Offer_Scheduled_ProgramsOffered" Association="UASMiniProject.FK_Offer_Scheduled_ProgramsOffered">
+      <End Role="ProgramsOffered" EntitySet="ProgramsOffereds" />
+      <End Role="Offer_Scheduled" EntitySet="Offer_Scheduled" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_Offer_Scheduled_ProgramsScheduled">
+    <End Type="UASMiniProject.ProgramsScheduled" Role="ProgramsScheduled" Multiplicity="1" />
+    <End Type="UASMiniProject.Offer_Scheduled" Role="Offer_Scheduled" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ProgramsScheduled">
+        <PropertyRef Name="DummyID" />
+      </Principal>
+      <Dependent Role="Offer_Scheduled">
+        <PropertyRef Name="DummyID_PO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Offer_Scheduled_ProgramsOffered">
+    <End Type="UASMiniProject.ProgramsOffered" Role="ProgramsOffered" Multiplicity="0..1" />
+    <End Type="UASMiniProject.Offer_Scheduled" Role="Offer_Scheduled" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProgramsOffered">
+        <PropertyRef Name="DummyID_PO" />
+      </Principal>
+      <Dependent Role="Offer_Scheduled">
+        <PropertyRef Name="DummyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

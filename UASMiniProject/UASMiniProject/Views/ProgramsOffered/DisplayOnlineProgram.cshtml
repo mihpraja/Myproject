@@ -1,0 +1,22 @@
+﻿@model UASMiniProject.Models.ProgramsOffered
+
+@{
+    ViewBag.Title = "DisplayOnlineProgram";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br /><br /><br />
+
+<div>
+    <img src="~/img/online.jfif"/>
+</div>
+<br /><br />
+
+<h2 class="text-center text-danger">Introduction</h2>
+<p>Preparing students to make meaningful contributions to society as engaged citizens and leaders in a complex world. Building on Stanford Group’s rich experience in designing and delivering both graduate and post-graduate programs across a variety of disciplines such as Engineering, Hotel Management, Career Skills and Health Science. The Stanford University Online Education Program has built upon the knowledge base created by our highly qualified faculties, our research, publishing and training experience, to create online programs that offer a rich learning experience.</p>
+@{
+    <div class="col-lg-11 text-center">
+        <input type="button" name="button1" value="Apply Now" class="btn btn-primary" onclick="location.href='@Url.Action("Register", "Applicant")'" />
+    </div>
+}

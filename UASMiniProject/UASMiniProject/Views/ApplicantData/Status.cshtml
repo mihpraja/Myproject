@@ -1,0 +1,31 @@
+﻿@model IEnumerable<UASMiniProject.Models.ApplicationForm>
+
+@{
+    ViewBag.Title = "Status";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>To Know Your Application Status</h3>
+@using (Html.BeginForm())
+{
+    //the following are search options
+
+    <b>Enter Your Email Id: </b>
+    @Html.TextBox("search") <input type="submit"
+                                   name="submit"
+                                   value="Check Status" />
+
+    <ul>
+        <li> @Html.DisplayNameFor(m => m.Status)</li>
+        @foreach (var item in Model)
+        {
+            <li>@Html.DisplayFor(m1 => item.Status)</li>
+
+        }
+    </ul>
+
+}
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

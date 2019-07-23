@@ -1,0 +1,40 @@
+﻿@model IEnumerable<UASMiniProject.Models.Offer_Scheduled>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutApplicant.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramsScheduleds.Scheduled_Program_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramsOffereds.Program_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramsScheduleds.Scheduled_Program_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramsOffereds.Program_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.DummyID_PO  }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.DummyID_PO }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.DummyID_PO })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<UASMiniProject.Models.ApplicationForm>
+
+@{
+    ViewBag.Title = "ViewApp";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<br />
+<br />
+<br />
+@using (Html.BeginForm())
+{
+
+    <div class="col-lg-offset-11">
+        @Html.ActionLink("MAC Menu ", "Index", "MAC", new { @class = "btn btn-danger  " })
+    </div>
+    //the following are search options
+    <h3 class="text-danger text-center">View applications for a specific program</h3>
+    <br />
+    <b>Enter Program Name: </b>
+    @Html.TextBox("search") <input type="submit"
+                                   name="submit" class="btn btn-sm btn-info"
+                                   value="Check" />
+
+    <table class="table table-hover">
+        <tr class="success">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Full_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_Of_Birth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Highest_Qualification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marks_Obtained)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Goals)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Scheduled_Program_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_Of_Interview)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Full_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_Of_Birth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Highest_Qualification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marks_Obtained)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Goals)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Scheduled_Program_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_Of_Interview)
+                </td>
+                @*<td>
+                    @html.actionlink("edit", "edit", new { id = item.Application_Id }) |
+                    @html.actionlink("details", "details", new { id = item.Application_Id }) |
+                    @html.actionlink("delete", "delete", new { id = item.Application_Id })
+                </td>*@
+            </tr>
+        }
+
+    </table>
+}
+

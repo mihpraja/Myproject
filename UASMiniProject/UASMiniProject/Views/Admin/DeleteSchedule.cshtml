@@ -1,0 +1,84 @@
+﻿@model UASMiniProject.Models.ProgramsScheduled
+
+@{
+    ViewBag.Title = "DeleteSchedule";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<br /><br /><br />
+@using (Html.BeginForm())
+{
+
+    <div>
+        <div class="col-lg-1">
+            @Html.ActionLink("Create Schedule", "CreateSchedule", "Admin", new { @class = "btn btn-info" })
+
+        </div>
+        <div class="col-lg-offset-10">
+            @Html.ActionLink("Display Schedule", "DisplaySchedule", "Admin", new { @class = "btn btn-success" })
+            @Html.ActionLink("Admin Menu ", "Index", "Admin", new { @class = "btn btn-danger  " })
+        </div>
+    </div>
+}
+<h3 class="text-center">Are you sure you want to delete this?</h3>
+<div class="text-center">
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Scheduled_Program_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Scheduled_Program_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Program_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Program_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Start_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Start_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.End_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.End_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sessions_Per_Week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sessions_Per_Week)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @*@Html.ActionLink("Back to List", "Index")*@
+        </div>
+    }
+</div>

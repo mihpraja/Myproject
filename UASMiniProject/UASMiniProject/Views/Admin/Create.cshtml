@@ -1,0 +1,82 @@
+﻿@model UASMiniProject.Models.ProgramsOffered
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<br /><br /><br /><br />
+
+@using (Html.BeginForm())
+{
+    <script>
+        function Created() {
+            alert("Program Created Sucessfully!!");
+        }
+    </script>
+    @Html.AntiForgeryToken()
+    <div class="col-lg-1">
+        @Html.ActionLink("Display Program", "DisplayProgram", "Admin", new { @class = "btn btn-success" })
+    </div>
+    <div class="col-lg-offset-11">
+        @Html.ActionLink("Admin Menu ", "Index", "Admin", new { @class = "btn btn-danger  " })
+    </div>
+    <div class="form-horizontal">
+        <h4>ProgramsOffered</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Program_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Program_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Program_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Applicant_Eligibility, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Applicant_Eligibility, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Applicant_Eligibility, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Duration_in_years, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Duration_in_years, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Duration_in_years, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Degree_Certificate_Offered, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Degree_Certificate_Offered, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Degree_Certificate_Offered, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DummyID_PO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DummyID_PO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DummyID_PO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" onclick="Created()" />
+            </div>
+        </div>
+    </div>
+}

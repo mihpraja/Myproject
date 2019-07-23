@@ -1,0 +1,69 @@
+﻿@model IEnumerable<UASMiniProject.Models.ProgramsScheduled>
+
+@{
+    ViewBag.Title = "DisplaySchedule";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<br /><br /><br />
+@using (Html.BeginForm())
+{
+
+    <div class="col-lg-1">
+        @Html.ActionLink("Create Schedule", "CreateSchedule", "Admin", new { @class = "btn btn-info" })
+    </div>
+    <div class="col-lg-offset-11">
+        @Html.ActionLink("Admin Menu ", "Index", "Admin", new { @class = "btn btn-danger  " })
+    </div>
+    <table class="table table-hover">
+        <tr class="success">
+            <th>
+                @Html.DisplayNameFor(model => model.Scheduled_Program_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Program_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Start_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End_Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sessions_Per_Week)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="info">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Scheduled_Program_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Program_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Start_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.End_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sessions_Per_Week)
+                </td>
+                <td>
+                    @Html.ActionLink("Update", "EditSchedule", new { @id = item.DummyID }, new { @class = "btn btn-success" });
+
+                    @Html.ActionLink("Delete", "DeleteSchedule", new { @id = item.DummyID }, new { @class = "btn btn-warning" })
+                </td>
+            </tr>
+        }
+    </table>
+}
